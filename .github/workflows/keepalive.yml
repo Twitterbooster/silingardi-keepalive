@@ -1,0 +1,20 @@
+name: Keep-alive silingardi.com
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  ping:
+    name: Ping https://www.silingardi.com/
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send HTTP request
+        run: |
+          code=$(curl -sS -L -o /dev/null -w "%{http_code}" --max-time 30 https://www.silingardi.com/)
+          echo "HTTP $code"
+          test "$code" = "200"
