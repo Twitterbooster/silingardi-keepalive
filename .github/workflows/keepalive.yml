@@ -1,5 +1,8 @@
 name: Keep-alive silingardi.com
 
+# Ping ogni 10 minuti (UTC) per tenere sveglio il sito su Render free tier.
+# Cron: minuti 2-59 con passo 10 -> :02, :12, :22, :32, :42, :52 (evita l'inizio dell'ora).
+
 on:
   schedule:
     - cron: "2-59/10 * * * *"
